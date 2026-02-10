@@ -18,19 +18,19 @@ class Shooter : public frc2::SubsystemBase {
 
   ////////   FLYWHEELS
 
-  //Flywheel one and two (one is left, two is right) use Rpm
+  //Flywheel one and two (one is left, two is right) Units: Turns per second
 
-  frc2::CommandPtr SetFlywheelSpeed(units::revolutions_per_minute_t vel);
+  frc2::CommandPtr SetFlywheelSpeed(units::turns_per_second_t vel);
 
-  units::revolutions_per_minute_t GetFlywheelSpeed();
+  units::turns_per_second_t GetFlywheelSpeed();
 
   ////////   FLAP
 
-  //Flap (rotates to angle the fuel) use Angle
+  //Flap (rotates to angle the fuel) Units: Turns
 
-  frc2::CommandPtr SetFlapPosition(units::angle::degree_t position);
+  frc2::CommandPtr SetFlapPosition(units::angle::turn_t position);
 
-  units::angle::degree_t GetFlapPosition();
+  units::angle::turn_t GetFlapPosition();
 
 
   

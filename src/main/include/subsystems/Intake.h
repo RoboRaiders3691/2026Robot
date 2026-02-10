@@ -18,7 +18,7 @@ class Intake : public frc2::SubsystemBase {
 
   ////////   MOTOR ONE
 
-  //Intake motor one (The one that pivots the intake) uses Turns
+  //Intake motor one (The one that pivots the intake) Units: Turns
 
   frc2::CommandPtr SetAngle(units::turn_t turns);
 
@@ -27,11 +27,11 @@ class Intake : public frc2::SubsystemBase {
 
   ////////   MOTOR TWO
 
-  //Intake motor two (The one that actually spins) uses Rpm
+  //Intake motor two (The one that actually spins) Units: Turns per second
 
-  frc2::CommandPtr SetVel(units::revolutions_per_minute_t vel);
+  frc2::CommandPtr SetVel(units::turns_per_second_t vel);
 
-  units::revolutions_per_minute_t GetSpeedMotorTwo();
+  units::turns_per_second_t GetSpeedMotorTwo();
 
 
 

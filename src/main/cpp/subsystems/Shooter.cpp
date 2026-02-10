@@ -18,31 +18,31 @@ m_Flap(kCanIDTwo), m_PoseRequestFlap(0_tr) {
 
 ////////   FLYWHEELS
 
-//Flywheel one and two (one is left, two is right) units: Revolution per minute
+//Flywheel one and two (one is left, two is right) Units: Turns per second
 
-frc2::CommandPtr Shooter::SetFlywheelSpeed(units::revolutions_per_minute_t vel){
+frc2::CommandPtr Shooter::SetFlywheelSpeed(units::turns_per_second_t vel){
     return RunOnce([this, vel] {
                 m_FlywheelR.SetControl(m_VelRequestTwo.WithVelocity(vel));
                 m_FlywheelL.SetControl(m_VelRequestTwo.WithVelocity(-vel));
         });
 }
 
-units::angular_velocity::revolutions_per_minute_t Shooter::GetFlywheelSpeed(){
+units::angular_velocity::turns_per_second_t Shooter::GetFlywheelSpeed(){
     return m_FlywheelR.GetVelocity().GetValue();
     return m_FlywheelL.GetVelocity().GetValue();
 }
 
 ////////   FLAP
 
-//Flap (rotates to angle the fuel) units: Degree
+//Flap (rotates to angle the fuel) Units: Turns
 
-frc2::CommandPtr Shooter::SetFlapPosition(units::angle::degree_t position){
+frc2::CommandPtr Shooter::SetFlapPosition(units::angle::turn_t position){
     return RunOnce([this, position] {
             m_Flap.SetControl(m_PoseRequestFlap.WithPosition(position));
     });
 }
 
-units::angle::degree_t Shooter::GetFlapPosition(){
+units::angle::turn_t Shooter::GetFlapPosition(){
     return m_Flap.GetPosition().GetValue();
 }
 

@@ -15,7 +15,7 @@ m_MotorTwo(kCanIDTwo), m_PoseRequestTwo(0_tr), m_VelRequestTwo(0_rpm) {
 
    ////////   MOTOR ONE
 
-  //Intake motor one (The one that pivots the intake) units: Turns
+  //Intake motor one (The one that pivots the intake) Units: Turns
 
   frc2::CommandPtr Intake::SetAngle(units::turn_t turns){
         return RunOnce([this, turns] {
@@ -30,15 +30,15 @@ m_MotorTwo(kCanIDTwo), m_PoseRequestTwo(0_tr), m_VelRequestTwo(0_rpm) {
 
   ////////   MOTOR TWO
 
-  //Intake motor two (The one that actually spins) units: Revolution per minute
+  //Intake motor two (The one that actually spins) Units: Turns per second
 
-  frc2::CommandPtr Intake::SetVel(units::revolutions_per_minute_t vel){
+  frc2::CommandPtr Intake::SetVel(units::turns_per_second_t vel){
         return RunOnce([this, vel] {
             m_MotorTwo.SetControl(m_VelRequestTwo.WithVelocity(vel));
     });
   }
 
-  units::angular_velocity::revolutions_per_minute_t Intake::GetSpeedMotorTwo(){
+  units::angular_velocity::turns_per_second_t Intake::GetSpeedMotorTwo(){
     return m_MotorOne.GetVelocity().GetValue();
   }
 
