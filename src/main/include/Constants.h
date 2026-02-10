@@ -16,6 +16,8 @@
 #include "ctre/phoenix6/configs/Configurator.hpp"
 #include "ctre/phoenix6/configs/Slot0Configs.hpp"
 
+
+
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants.  This should not be used for any other
@@ -26,6 +28,11 @@
  * they are needed.
  */
 
+
+
+//ctre::phoenix6::CANBus::CANBus(std::string_view canbus = "")	
+
+
 namespace OperatorConstants {
 
 inline constexpr int kDriverControllerPort = 0;
@@ -33,6 +40,8 @@ inline constexpr int kDriverControllerPort = 0;
 }
 
 namespace IntakeConstants {
+
+
 
     inline constexpr int kCanIDOne = 0;
     inline constexpr units::angle::turn_t kUpperLimitOne = 0_tr;
@@ -87,4 +96,86 @@ namespace IntakeConstants {
         );
 }
 
+namespace ShooterConstants {
+
+    inline constexpr bool InvertFollowDir = True;
+
+    inline constexpr int kCanIDOne = 0;
+    inline constexpr units::angle::turn_t kUpperLimitOne = 0_tr;
+    inline constexpr units::angle::turn_t kLowerLimitOne = -0_tr;
+
+    inline constexpr int kCanIDTwo = 0;
+    inline constexpr units::angle::turn_t kUpperLimitTwo = 0_tr;
+    inline constexpr units::angle::turn_t kLowerLimitTwo = -0_tr;
+
+    inline constexpr int kCanIDFlap = 0;
+    inline constexpr units::angle::turn_t kUpperLimitFlap = 0_tr;
+    inline constexpr units::angle::turn_t kLowerLimitFlap = -0_tr;
+
+    static constexpr ctre::phoenix6::configs::TalonFXConfiguration KMotorOneConfigs = ctre::phoenix6::configs::TalonFXConfiguration{}
+        .WithSlot0(ctre::phoenix6::configs::Slot0Configs{}
+                    
+            .WithKP(0)
+            .WithKI(0)
+            .WithKD(0)
+
+            .WithKS(0)
+            .WithKV(0)
+            .WithKA(0)
+            .WithKG(0)
+            .WithGravityType(ctre::phoenix6::signals::GravityTypeValue::Arm_Cosine)
+        )
+        .WithMotionMagic(ctre::phoenix6::configs::MotionMagicConfigs{}
+            .WithMotionMagicCruiseVelocity(5_tps)
+            .WithMotionMagicAcceleration(10_tr_per_s_sq)
+            .WithMotionMagicJerk(100_tr_per_s_cu)
+        )
+        .WithFeedback(ctre::phoenix6::configs::FeedbackConfigs{}
+            .WithSensorToMechanismRatio(0)
+        );
+
+        static constexpr ctre::phoenix6::configs::TalonFXConfiguration KMotorTwoConfigs = ctre::phoenix6::configs::TalonFXConfiguration{}
+        .WithSlot0(ctre::phoenix6::configs::Slot0Configs{}
+                    
+            .WithKP(0)
+            .WithKI(0)
+            .WithKD(0)
+
+            .WithKS(0)
+            .WithKV(0)
+            .WithKA(0)
+            .WithKG(0)
+            .WithGravityType(ctre::phoenix6::signals::GravityTypeValue::Arm_Cosine)
+        )
+        .WithMotionMagic(ctre::phoenix6::configs::MotionMagicConfigs{}
+            .WithMotionMagicCruiseVelocity(5_tps)
+            .WithMotionMagicAcceleration(10_tr_per_s_sq)
+            .WithMotionMagicJerk(100_tr_per_s_cu)
+        )
+        .WithFeedback(ctre::phoenix6::configs::FeedbackConfigs{}
+            .WithSensorToMechanismRatio(0)
+        );
+
+        static constexpr ctre::phoenix6::configs::TalonFXConfiguration KFlapConfigs = ctre::phoenix6::configs::TalonFXConfiguration{}
+        .WithSlot0(ctre::phoenix6::configs::Slot0Configs{}
+                    
+            .WithKP(0)
+            .WithKI(0)
+            .WithKD(0)
+
+            .WithKS(0)
+            .WithKV(0)
+            .WithKA(0)
+            .WithKG(0)
+            .WithGravityType(ctre::phoenix6::signals::GravityTypeValue::Arm_Cosine)
+        )
+        .WithMotionMagic(ctre::phoenix6::configs::MotionMagicConfigs{}
+            .WithMotionMagicCruiseVelocity(5_tps)
+            .WithMotionMagicAcceleration(10_tr_per_s_sq)
+            .WithMotionMagicJerk(100_tr_per_s_cu)
+        )
+        .WithFeedback(ctre::phoenix6::configs::FeedbackConfigs{}
+            .WithSensorToMechanismRatio(0)
+        );
+}
 
