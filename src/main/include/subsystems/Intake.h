@@ -10,9 +10,11 @@
 
 #include "Constants.h"
 
+#include <ctre/phoenix6/CANBus.hpp>
+
 class Intake : public frc2::SubsystemBase {
  public:
-  Intake();
+  Intake(ctre::phoenix6::CANBus CANBus);
 
   void Periodic() override;
 

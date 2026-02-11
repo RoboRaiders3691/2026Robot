@@ -6,10 +6,10 @@
 
 using namespace ShooterConstants;
 
-Shooter::Shooter() : 
-m_FlywheelL(kCanIDOne), m_VelRequestOne(0_rpm), 
-m_FlywheelR(kCanIDTwo), m_VelRequestTwo(0_rpm),  
-m_Flap(kCanIDTwo), m_PoseRequestFlap(0_tr) {
+Shooter::Shooter(ctre::phoenix6::CANBus CANBus) : 
+m_FlywheelL(kCanIDOne, CANBus), m_VelRequestOne(0_rpm), 
+m_FlywheelR(kCanIDTwo, CANBus), m_VelRequestTwo(0_rpm),  
+m_Flap(kCanIDTwo, CANBus), m_PoseRequestFlap(0_tr) {
     m_FlywheelL.GetConfigurator().Apply(KMotorOneConfigs);
     m_FlywheelR.GetConfigurator().Apply(KMotorTwoConfigs);
     m_Flap.GetConfigurator().Apply(KFlapConfigs);
@@ -23,13 +23,11 @@ m_Flap(kCanIDTwo), m_PoseRequestFlap(0_tr) {
 frc2::CommandPtr Shooter::SetFlywheelSpeed(units::turns_per_second_t vel){
     return RunOnce([this, vel] {
                 m_FlywheelR.SetControl(m_VelRequestTwo.WithVelocity(vel));
-                m_FlywheelL.SetControl(m_VelRequestTwo.WithVelocity(-vel));
         });
 }
 
 units::angular_velocity::turns_per_second_t Shooter::GetFlywheelSpeed(){
     return m_FlywheelR.GetVelocity().GetValue();
-    return m_FlywheelL.GetVelocity().GetValue();
 }
 
 ////////   FLAP

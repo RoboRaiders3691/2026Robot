@@ -6,9 +6,9 @@
 
 using namespace IntakeConstants;
 
-Intake::Intake() : 
-m_MotorOne(kCanIDOne), m_PoseRequestOne(0_tr), m_VelRequestOne(0_rpm), 
-m_MotorTwo(kCanIDTwo), m_PoseRequestTwo(0_tr), m_VelRequestTwo(0_rpm) {
+Intake::Intake(ctre::phoenix6::CANBus CANBus) : 
+m_MotorOne(kCanIDOne, CANBus), m_PoseRequestOne(0_tr), m_VelRequestOne(0_rpm), 
+m_MotorTwo(kCanIDTwo, CANBus), m_PoseRequestTwo(0_tr), m_VelRequestTwo(0_rpm) {
     m_MotorOne.GetConfigurator().Apply(KMotorOneConfigs);
     m_MotorTwo.GetConfigurator().Apply(KMotorTwoConfigs);
 }

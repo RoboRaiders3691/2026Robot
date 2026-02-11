@@ -30,10 +30,15 @@ class RobotContainer {
   frc2::CommandXboxController m_driverController{
       OperatorConstants::kDriverControllerPort};
 
+  //Canbus objects
+  ctre::phoenix6::CANBus CANBusRio(std::string_view	canbus = "rio");
+  ctre::phoenix6::CANBus CANBusCanivore	(std::string_view	canbus = "*");
+ 
+
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
-  Intake m_Intake;
-  Shooter m_Shooter;
+  Intake m_Intake();
+  Shooter m_Shooter();
 
   void ConfigureBindings();
 };

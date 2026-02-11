@@ -12,9 +12,11 @@
 
 #include "Constants.h"
 
+#include <ctre/phoenix6/CANBus.hpp>
+
 class Shooter : public frc2::SubsystemBase {
  public:
-  Shooter();
+  Shooter(ctre::phoenix6::CANBus CANBus);
 
   ////////   FLYWHEELS
 

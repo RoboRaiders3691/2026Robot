@@ -6,6 +6,7 @@
 
 #pragma once
 
+
 #include <units/angle.h>
 #include <units/angular_velocity.h>
 #include <units/angular_acceleration.h>
@@ -15,6 +16,8 @@
 
 #include "ctre/phoenix6/configs/Configurator.hpp"
 #include "ctre/phoenix6/configs/Slot0Configs.hpp"
+
+
 
 
 
@@ -30,7 +33,7 @@
 
 
 
-//ctre::phoenix6::CANBus::CANBus(std::string_view canbus = "")	
+
 
 
 namespace OperatorConstants {
@@ -41,8 +44,7 @@ inline constexpr int kDriverControllerPort = 0;
 
 namespace IntakeConstants {
 
-
-
+ 
     inline constexpr int kCanIDOne = 0;
     inline constexpr units::angle::turn_t kUpperLimitOne = 0_tr;
     inline constexpr units::angle::turn_t kLowerLimitOne = -0_tr;
