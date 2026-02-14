@@ -22,9 +22,9 @@ class Shooter : public frc2::SubsystemBase {
 
   //Flywheel one and two (one is left, two is right) Units: Turns per second
 
-  frc2::CommandPtr SetFlywheelSpeed(units::turns_per_second_t vel);
+  frc2::CommandPtr SetFlywheelVel(units::turns_per_second_t vel);
 
-  units::turns_per_second_t GetFlywheelSpeed();
+  units::turns_per_second_t GetFlywheelVel();
 
   ////////   FLAP
 

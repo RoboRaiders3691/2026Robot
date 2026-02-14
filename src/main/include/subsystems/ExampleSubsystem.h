@@ -7,6 +7,12 @@
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
 
+#include <frc2/command/Command.h>
+
+#include "Constants.h"
+
+#include <ctre/phoenix6/CANBus.hpp>
+
 class ExampleSubsystem : public frc2::SubsystemBase {
  public:
   ExampleSubsystem();

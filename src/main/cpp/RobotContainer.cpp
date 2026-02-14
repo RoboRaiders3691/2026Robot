@@ -17,18 +17,14 @@ RobotContainer::RobotContainer(){
 }
 
 
-void RobotContainer::ConfigureBindings()
-{
-    // Configure your trigger bindings here
-
-    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    frc2::Trigger([this]
-                  { return m_subsystem.ExampleCondition(); })
-        .OnTrue(ExampleCommand(&m_subsystem).ToPtr());
-
-    // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
-    // pressed, cancelling on release.
-    m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
+void RobotContainer::ConfigureBindings() {
+  m_XboxController.RightTrigger().OnTrue(m_shooter.SetFlywheelVel(1_tps)); // CHANGE NUMBER LATER
+  m_XboxController.LeftTrigger().OnTrue(m_intake.SetVel(1_tps)); // CHANGE NUMBER LATER
+  m_XboxController.LeftBumper().OnTrue(m_intake.SetAngle(0.5_tr)); // CHANGE NUMBER LATER
+  m_XboxController.RightBumper().OnTrue(m_intake.SetAngle(1.5_tr)); // CHANGE NUMBER LATER
+  m_XboxController.X().OnTrue(m_climber.SetMotorPosition(1_tr)); // CHANGE NUMBER LATER
+  m_XboxController.Y().OnTrue(m_climber.SetMotorPosition(0_tr)); // CHANGE NUMBER LATER
+  m_XboxController.A().OnTrue(m_climber.SetMotorPosition(-1_tr)); // CHANGE NUMBER LATER
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {

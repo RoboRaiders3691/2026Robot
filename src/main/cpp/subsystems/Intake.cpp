@@ -7,8 +7,8 @@
 using namespace IntakeConstants;
 
 Intake::Intake(): 
-m_MotorOne(kCanIDOne, KIntakeCanloop), m_PoseRequestOne(0_tr), m_VelRequestOne(0_rpm), 
-m_MotorTwo(kCanIDTwo, KIntakeCanloop), m_PoseRequestTwo(0_tr), m_VelRequestTwo(0_rpm) {
+m_MotorOne(kCanIDOne, kCanBus), m_PoseRequestOne(0_tr), m_VelRequestOne(0_rpm), 
+m_MotorTwo(kCanIDTwo, kCanBus), m_PoseRequestTwo(0_tr), m_VelRequestTwo(0_rpm) {
     m_MotorOne.GetConfigurator().Apply(KMotorOneConfigs);
     m_MotorTwo.GetConfigurator().Apply(KMotorTwoConfigs);
 }

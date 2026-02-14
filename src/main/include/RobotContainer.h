@@ -12,6 +12,7 @@
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/Intake.h"
 #include "subsystems/Shooter.h"
+#include "subsystems/Climber.h"
 
 
 /**
@@ -29,7 +30,7 @@ class RobotContainer {
 
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  frc2::CommandXboxController m_driverController{
+  frc2::CommandXboxController m_XboxController{
       OperatorConstants::kDriverControllerPort};
 
   //Canbus objects
@@ -38,8 +39,9 @@ class RobotContainer {
 
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
-  Intake Intake;
-  Shooter Shooter;
+  Intake m_intake;
+  Shooter m_shooter;
+  Climber m_climber;
 
   void ConfigureBindings();
 };

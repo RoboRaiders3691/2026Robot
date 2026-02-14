@@ -44,10 +44,7 @@ inline constexpr int kDriverControllerPort = 0;
 }
 
 namespace IntakeConstants {
-
-    inline constexpr std::string_view rioParam = "rio";
-    inline constexpr ctre::phoenix6::CANBus KIntakeCanloop(rioParam);
-
+    inline constexpr ctre::phoenix6::CANBus kCanBus{"*"};
 
     inline constexpr int kCanIDOne = 0;
     inline constexpr units::angle::turn_t kUpperLimitOne = 0_tr;
@@ -103,10 +100,9 @@ namespace IntakeConstants {
 }
 
 namespace ShooterConstants {
-    inline constexpr std::string_view rioParam = "rio";
-    inline constexpr ctre::phoenix6::CANBus KShooterCanloop(rioParam);
+    inline constexpr ctre::phoenix6::CANBus kCanBus{"*"};
 
-    inline constexpr bool InvertFollowDir = True;
+    inline constexpr bool InvertFollowDir = true;
 
     inline constexpr int kCanIDOne = 0;
     inline constexpr units::angle::turn_t kUpperLimitOne = 0_tr;
@@ -185,5 +181,37 @@ namespace ShooterConstants {
         .WithFeedback(ctre::phoenix6::configs::FeedbackConfigs{}
             .WithSensorToMechanismRatio(0)
         );
+}
+
+namespace ClimberConstants {
+    inline constexpr ctre::phoenix6::CANBus kCanBus{"*"};
+
+    inline constexpr int kCanIDOne = 0;
+    inline constexpr units::angle::turn_t kUpperLimitOne = 0_tr;
+    inline constexpr units::angle::turn_t kLowerLimitOne = -0_tr;
+
+
+    static constexpr ctre::phoenix6::configs::TalonFXConfiguration KMotorConfigs = ctre::phoenix6::configs::TalonFXConfiguration{}
+        .WithSlot0(ctre::phoenix6::configs::Slot0Configs{}
+                    
+            .WithKP(0)
+            .WithKI(0)
+            .WithKD(0)
+
+            .WithKS(0)
+            .WithKV(0)
+            .WithKA(0)
+            .WithKG(0)
+            .WithGravityType(ctre::phoenix6::signals::GravityTypeValue::Arm_Cosine)
+        )
+        .WithMotionMagic(ctre::phoenix6::configs::MotionMagicConfigs{}
+            .WithMotionMagicCruiseVelocity(5_tps)
+            .WithMotionMagicAcceleration(10_tr_per_s_sq)
+            .WithMotionMagicJerk(100_tr_per_s_cu)
+        )
+        .WithFeedback(ctre::phoenix6::configs::FeedbackConfigs{}
+            .WithSensorToMechanismRatio(0)
+        );
+
 }
 

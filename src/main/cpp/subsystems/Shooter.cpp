@@ -7,9 +7,9 @@
 using namespace ShooterConstants;
 
 Shooter::Shooter() : 
-m_FlywheelL(kCanIDOne, KShooterCanloop), m_VelRequestOne(0_rpm), 
-m_FlywheelR(kCanIDTwo, KShooterCanloop), m_VelRequestTwo(0_rpm),  
-m_Flap(kCanIDTwo, KShooterCanloop), m_PoseRequestFlap(0_tr) {
+m_FlywheelL(kCanIDOne, kCanBus), m_VelRequestOne(0_rpm), 
+m_FlywheelR(kCanIDTwo, kCanBus), m_VelRequestTwo(0_rpm),  
+m_Flap(kCanIDTwo, kCanBus), m_PoseRequestFlap(0_tr) {
     m_FlywheelL.GetConfigurator().Apply(KMotorOneConfigs);
     m_FlywheelR.GetConfigurator().Apply(KMotorTwoConfigs);
     m_Flap.GetConfigurator().Apply(KFlapConfigs);
@@ -20,13 +20,13 @@ m_Flap(kCanIDTwo, KShooterCanloop), m_PoseRequestFlap(0_tr) {
 
 //Flywheel one and two (one is left, two is right) Units: Turns per second
 
-frc2::CommandPtr Shooter::SetFlywheelSpeed(units::turns_per_second_t vel){
+frc2::CommandPtr Shooter::SetFlywheelVel(units::turns_per_second_t vel){
     return RunOnce([this, vel] {
                 m_FlywheelR.SetControl(m_VelRequestTwo.WithVelocity(vel));
         });
 }
 
-units::angular_velocity::turns_per_second_t Shooter::GetFlywheelSpeed(){
+units::angular_velocity::turns_per_second_t Shooter::GetFlywheelVel(){
     return m_FlywheelR.GetVelocity().GetValue();
 }
 
