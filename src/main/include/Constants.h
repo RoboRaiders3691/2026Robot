@@ -32,7 +32,8 @@
  */
 
 
-
+    //ctre::phoenix6::CANBus CANBusRio(std::string_view	canbus = "rio");
+    //ctre::phoenix6::CANBus CANBusCanivore	(std::string_view	canbus = "*");
 
 
 
@@ -44,7 +45,10 @@ inline constexpr int kDriverControllerPort = 0;
 
 namespace IntakeConstants {
 
- 
+    inline constexpr std::string_view rioParam = "rio";
+    inline constexpr ctre::phoenix6::CANBus KIntakeCanloop(rioParam);
+
+
     inline constexpr int kCanIDOne = 0;
     inline constexpr units::angle::turn_t kUpperLimitOne = 0_tr;
     inline constexpr units::angle::turn_t kLowerLimitOne = -0_tr;
@@ -99,6 +103,8 @@ namespace IntakeConstants {
 }
 
 namespace ShooterConstants {
+    inline constexpr std::string_view rioParam = "rio";
+    inline constexpr ctre::phoenix6::CANBus KShooterCanloop(rioParam);
 
     inline constexpr bool InvertFollowDir = True;
 

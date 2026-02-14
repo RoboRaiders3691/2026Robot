@@ -14,7 +14,7 @@
 
 class Intake : public frc2::SubsystemBase {
  public:
-  Intake(ctre::phoenix6::CANBus CANBus);
+  Intake();
 
   void Periodic() override;
 

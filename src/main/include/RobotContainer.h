@@ -6,11 +6,13 @@
 
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
+#include <ctre/phoenix6/CANBus.hpp>
 
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/Intake.h"
 #include "subsystems/Shooter.h"
+
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -31,14 +33,13 @@ class RobotContainer {
       OperatorConstants::kDriverControllerPort};
 
   //Canbus objects
-  ctre::phoenix6::CANBus CANBusRio(std::string_view	canbus = "rio");
-  ctre::phoenix6::CANBus CANBusCanivore	(std::string_view	canbus = "*");
+
  
 
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
-  Intake m_Intake();
-  Shooter m_Shooter();
+  Intake Intake;
+  Shooter Shooter;
 
   void ConfigureBindings();
 };

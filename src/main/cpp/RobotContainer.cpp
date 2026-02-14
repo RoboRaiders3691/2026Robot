@@ -9,22 +9,13 @@
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
 
-RobotContainer::RobotContainer() {
+RobotContainer::RobotContainer(){
   // Initialize all of your commands and subsystems here
 
   // Configure the button bindings
   ConfigureBindings();
 }
 
-Intake RobotContainer::m_Intake()
-{
-    return Intake(RobotContainer::CANBusRio);
-}
-
-Shooter RobotContainer::m_Shooter()
-{
-    return Shooter();
-}
 
 void RobotContainer::ConfigureBindings()
 {
@@ -45,14 +36,7 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   return autos::ExampleAuto(&m_subsystem);
 }
 
-ctre::phoenix6::CANBus RobotContainer::CANBusRio(std::string_view canbus)
-{
-    return ctre::phoenix6::CANBus();
-}
 
-ctre::phoenix6::CANBus RobotContainer::CANBusCanivore(std::string_view canbus)
-{
-    return ctre::phoenix6::CANBus();
-}
+
 
 

@@ -6,10 +6,10 @@
 
 using namespace ShooterConstants;
 
-Shooter::Shooter(ctre::phoenix6::CANBus CANBus) : 
-m_FlywheelL(kCanIDOne, CANBus), m_VelRequestOne(0_rpm), 
-m_FlywheelR(kCanIDTwo, CANBus), m_VelRequestTwo(0_rpm),  
-m_Flap(kCanIDTwo, CANBus), m_PoseRequestFlap(0_tr) {
+Shooter::Shooter() : 
+m_FlywheelL(kCanIDOne, KShooterCanloop), m_VelRequestOne(0_rpm), 
+m_FlywheelR(kCanIDTwo, KShooterCanloop), m_VelRequestTwo(0_rpm),  
+m_Flap(kCanIDTwo, KShooterCanloop), m_PoseRequestFlap(0_tr) {
     m_FlywheelL.GetConfigurator().Apply(KMotorOneConfigs);
     m_FlywheelR.GetConfigurator().Apply(KMotorTwoConfigs);
     m_Flap.GetConfigurator().Apply(KFlapConfigs);

@@ -16,7 +16,7 @@
 
 class Shooter : public frc2::SubsystemBase {
  public:
-  Shooter(ctre::phoenix6::CANBus CANBus);
+  Shooter();
 
   ////////   FLYWHEELS
 
