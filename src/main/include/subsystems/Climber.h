@@ -20,17 +20,37 @@ class Climber : public frc2::SubsystemBase {
    * Will be called periodically whenever the CommandScheduler runs.
    */
 
-   frc2::CommandPtr SetMotorPosition(units::angle::turn_t position);
+   frc2::CommandPtr SetMotorOnePosition(units::angle::turn_t position);
 
-   units::angle::turn_t GetMotorPosition();
+   units::angle::turn_t GetMotorOnePosition();
+
+   frc2::CommandPtr SetMotorTwoPosition(units::angle::turn_t position);
+
+   units::angle::turn_t GetMotorTwoPosition();
+
+   frc2::CommandPtr LowerClimber();
+
+   frc2::CommandPtr LevelOne();
+
+   frc2::CommandPtr LevelUp();
+
+   frc2::CommandPtr LevelTwo();
+
+   frc2::CommandPtr LevelThree();
 
 
   void Periodic() override;
 
  private:
 
-  ctre::phoenix6::hardware::TalonFX m_Motor;
+  ctre::phoenix6::hardware::TalonFX m_MotorOne;
 
-  ctre::phoenix6::controls::MotionMagicVoltage m_PoseRequest;
-  ctre::phoenix6::controls::MotionMagicVelocityVoltage m_VelRequest;
+  ctre::phoenix6::controls::MotionMagicVoltage m_PoseRequestOne;
+  ctre::phoenix6::controls::MotionMagicVelocityVoltage m_VelRequestOne;
+
+
+  ctre::phoenix6::hardware::TalonFX m_MotorTwo;
+
+  ctre::phoenix6::controls::MotionMagicVoltage m_PoseRequestTwo;
+  ctre::phoenix6::controls::MotionMagicVelocityVoltage m_VelRequestTwo;
 };
