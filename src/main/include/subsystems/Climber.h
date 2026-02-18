@@ -20,24 +20,19 @@ class Climber : public frc2::SubsystemBase {
    * Will be called periodically whenever the CommandScheduler runs.
    */
 
+   units::angle::turn_t InchToTurns(units::inch_t inch);
+
    frc2::CommandPtr SetMotorOnePosition(units::angle::turn_t position);
 
-   units::angle::turn_t GetMotorOnePosition();
+   units::inch GetMotorOnePosition();
 
-   frc2::CommandPtr SetMotorTwoPosition(units::angle::turn_t position);
+   frc2::CommandPtr SetMotorTwoPosition(units::angle::turn_t    position);
 
-   units::angle::turn_t GetMotorTwoPosition();
+   units::inch GetMotorTwoPosition();
 
    frc2::CommandPtr LowerClimber();
 
-   frc2::CommandPtr LevelOne();
-
-   frc2::CommandPtr LevelUp();
-
-   frc2::CommandPtr LevelTwo();
-
-   frc2::CommandPtr LevelThree();
-
+   frc2::CommandPtr SetMotorPositions(units::inch positionOne, units::inch positionTwo);
 
   void Periodic() override;
 

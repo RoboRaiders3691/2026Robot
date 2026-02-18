@@ -9,11 +9,20 @@ using namespace ClimberConstants;
 Climber::Climber(): 
 m_MotorOne(kCanIDOne, kCanBus), m_PoseRequestOne(0_tr), m_VelRequestOne(0_rpm),
 m_MotorTwo(kCanIDOne, kCanBus), m_PoseRequestTwo(0_tr), m_VelRequestTwo(0_rpm) {
-    m_MotorOne.GetConfigurator().Apply(KMotorConfigs);
+    m_MotorOne.GetConfigurator().Apply(KMotorOneConfigs);
+    m_MotorTwo.GetConfigurator().Apply(KMotorTwoConfigs);
 };
 
 // This method will be called once per scheduler run
 void Climber::Periodic() {}
+
+   ////////   HELPER 
+   
+   //converts inches to turns
+
+   units::angle::turn_t Climber::InchToTurns(units::inch_t inch){
+          return units::turn_t(inch.value()*kTurnsPerInch.value()); 
+   }
 
 
    ////////   MOTOR ONE
@@ -50,42 +59,15 @@ void Climber::Periodic() {}
 
    //Things like going straight to L1, L2, L3, and lowering the climber
 
+   frc2::CommandPtr Climber::SetMotorPositions(units::inch positionOne, units::inch positionTwo){
+            return RunOnce([this, positionOne, positionTwo] {
+                m_MotorOne.SetControl(m_PoseRequestOne.WithPosition(positionOne));
+                m_MotorTwo.SetControl(m_PoseRequestTwo.WithPosition(positionTwo));
+        });
+   };
+
    frc2::CommandPtr Climber::LowerClimber(){
             return RunOnce([this] {
-                m_MotorOne.SetControl(m_PoseRequestTwo.WithPosition(0_tr));
-                m_MotorTwo.SetControl(m_PoseRequestTwo.WithPosition(0_tr));
-        });
-   };
-
-   frc2::CommandPtr Climber::LevelOne(){
-            return RunOnce([this] {
-                m_MotorOne.SetControl(m_PoseRequestTwo.WithPosition(.5_tr));
-
-                m_MotorOne.SetControl(m_PoseRequestTwo.WithPosition(.25_tr));
-        });
-   };
-
-   frc2::CommandPtr Climber::LevelUp(){ //SAME AS LEVEL ONE BUT USES SECOND CLIMBER ARM. USED FOR SIMPLIFYING L2 AND L3 METHODS
-            return RunOnce([this] {
-                m_MotorOne.SetControl(m_PoseRequestTwo.WithPosition(.5_tr));
-                m_MotorTwo.SetControl(m_PoseRequestTwo.WithPosition(0_tr));
-
-                m_MotorOne.SetControl(m_PoseRequestTwo.WithPosition(.25_tr));
-                m_MotorTwo.SetControl(m_PoseRequestTwo.WithPosition(.25_tr));
-        });
-   };
-
-   frc2::CommandPtr Climber::LevelTwo(){
-            return RunOnce([this] {
-                Climber::LevelUp();
-                Climber::LevelUp();
-        });
-   };
-
-   frc2::CommandPtr Climber::LevelThree(){
-            return RunOnce([this] {
-                Climber::LevelUp();
-                Climber::LevelUp();
-                Climber::LevelUp();
+                SetMotorPositions(0_in, 0_in);
         });
    };
