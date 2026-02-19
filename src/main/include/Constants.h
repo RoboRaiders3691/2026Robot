@@ -174,12 +174,12 @@ namespace ClimberConstants {
     inline constexpr ctre::phoenix6::CANBus kCanBus{"*"};
 
     inline constexpr int kCanIDOne = 0;
-    inline constexpr units::angle::turn_t kUpperLimitOne = 0_tr;
-    inline constexpr units::angle::turn_t kLowerLimitOne = -0_tr;
+    inline constexpr units::length::inch_t kUpperLimitOne = 0_in;
+    inline constexpr units::length::inch_t kLowerLimitOne = -0_in;
 
     inline constexpr int kCanIDTwo = 0;
-    inline constexpr units::angle::turn_t kUpperLimitTwo = 0_tr;
-    inline constexpr units::angle::turn_t kLowerLimitTwo = -0_tr;
+    inline constexpr units::length::inch_t kUpperLimitTwo = 0_in;
+    inline constexpr units::length::inch_t kLowerLimitTwo = -0_in;
 
     inline constexpr units::unit_t<turns_per_inch> kTurnsPerInch{1.5};
 

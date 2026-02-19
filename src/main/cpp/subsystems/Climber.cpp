@@ -20,7 +20,7 @@ void Climber::Periodic() {}
    
    //converts inches to turns
 
-   units::angle::turn_t Climber::InchToTurns(units::inch_t inch){
+   units::angle::turn_t Climber::InchToTurns(units::length::inch_t inch){
           return units::turn_t(inch.value()*kTurnsPerInch.value()); 
    }
 
@@ -28,12 +28,6 @@ void Climber::Periodic() {}
    ////////   MOTOR ONE
 
    //Intake motor Units: Turns
-
-   frc2::CommandPtr Climber::SetMotorOnePosition(units::angle::turn_t position){
-            return RunOnce([this, position] {
-                m_MotorOne.SetControl(m_PoseRequestOne.WithPosition(position));
-        });
-   };
 
    units::angle::turn_t Climber::GetMotorOnePosition(){
         return m_MotorOne.GetPosition().GetValue();
@@ -44,12 +38,6 @@ void Climber::Periodic() {}
 
    //Intake motor Units: Turns
 
-   frc2::CommandPtr Climber::SetMotorTwoPosition(units::angle::turn_t position){
-            return RunOnce([this, position] {
-                m_MotorTwo.SetControl(m_PoseRequestTwo.WithPosition(position));
-        });
-   };
-
    units::angle::turn_t Climber::GetMotorTwoPosition(){
         return m_MotorTwo.GetPosition().GetValue();
    };
@@ -59,15 +47,22 @@ void Climber::Periodic() {}
 
    //Things like going straight to L1, L2, L3, and lowering the climber
 
-   frc2::CommandPtr Climber::SetMotorPositions(units::inch positionOne, units::inch positionTwo){
+   frc2::CommandPtr Climber::SetMotorPositions(units::inch_t positionOne, units::inch_t positionTwo){
             return RunOnce([this, positionOne, positionTwo] {
-                m_MotorOne.SetControl(m_PoseRequestOne.WithPosition(positionOne));
-                m_MotorTwo.SetControl(m_PoseRequestTwo.WithPosition(positionTwo));
+                m_MotorOne.SetControl(m_PoseRequestOne.WithPosition(InchToTurns(positionOne)));
+                m_MotorTwo.SetControl(m_PoseRequestTwo.WithPosition(InchToTurns(positionTwo)));
         });
    };
 
    frc2::CommandPtr Climber::LowerClimber(){
             return RunOnce([this] {
-                SetMotorPositions(0_in, 0_in);
+                SetMotorPositions(kLowerLimitOne, kLowerLimitTwo);
+        });
+   };
+
+   frc2::CommandPtr Climber::RaiseFromFloor(){
+            return RunOnce([this] {
+                SetMotorPositions(kUpperLimitOne, kLowerLimitTwo);
+                SetMotorPositions(kLowerLimitOne, kLowerLimitTwo);
         });
    };
