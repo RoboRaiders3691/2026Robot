@@ -26,6 +26,10 @@ class Intake : public frc2::SubsystemBase {
 
   units::turn_t GetAngleMotorOne();
 
+  units::turn_t GetPivotMax();
+
+  units::turn_t GetPivotMin();
+
 
   ////////   MOTOR TWO
 

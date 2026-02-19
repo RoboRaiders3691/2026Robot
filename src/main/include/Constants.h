@@ -38,8 +38,6 @@ namespace IntakeConstants {
     inline constexpr units::angle::turn_t kLowerLimitOne = -0_tr;
 
     inline constexpr int kCanIDTwo = 0;
-    inline constexpr units::angle::turn_t kUpperLimitTwo = 0_tr;
-    inline constexpr units::angle::turn_t kLowerLimitTwo = -0_tr;
 
     static constexpr ctre::phoenix6::configs::TalonFXConfiguration KMotorOneConfigs = ctre::phoenix6::configs::TalonFXConfiguration{}
         .WithSlot0(ctre::phoenix6::configs::Slot0Configs{}

@@ -33,8 +33,9 @@ class RobotContainer {
   frc2::CommandXboxController m_XboxController{
       OperatorConstants::kDriverControllerPort};
 
-  //Canbus objects
-
+  //input constants
+  units::turns_per_second_t shooterFlywheelConstant = 0_tps;
+  units::turns_per_second_t intakeVelocityConstant = 0_tps;
  
 
   // The robot's subsystems are defined here...

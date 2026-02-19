@@ -27,6 +27,15 @@ m_MotorTwo(kCanIDTwo, kCanBus), m_PoseRequestTwo(0_tr), m_VelRequestTwo(0_rpm) {
     return m_MotorOne.GetPosition().GetValue();
   }
 
+  units::turn_t Intake::GetPivotMax(){
+    return  kUpperLimitOne;
+  }
+
+  units::turn_t Intake::GetPivotMin(){
+    return  kLowerLimitOne;
+  }
+
+
 
   ////////   MOTOR TWO
 
