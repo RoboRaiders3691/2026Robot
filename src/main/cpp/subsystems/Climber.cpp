@@ -56,13 +56,25 @@ void Climber::Periodic() {}
 
    frc2::CommandPtr Climber::LowerClimber(){
             return RunOnce([this] {
-                SetMotorPositions(kLowerLimitOne, kLowerLimitTwo);
+                if(climbLevel == 1){
+                    SetMotorPositions(kLowerLimitOne, kLowerLimitTwo);
+                    climbLevel--;
+                }
         });
    };
 
-   frc2::CommandPtr Climber::RaiseFromFloor(){
+   frc2::CommandPtr Climber::RaiseClimber(){
             return RunOnce([this] {
-                SetMotorPositions(kUpperLimitOne, kLowerLimitTwo);
-                SetMotorPositions(kLowerLimitOne, kLowerLimitTwo);
+                if(climbLevel==0){ //Climb from floor
+                    SetMotorPositions(kUpperLimitOne, kLowerLimitTwo);
+                    SetMotorPositions(kLowerLimitOne, kLowerLimitTwo);
+                    climbLevel++;
+                } else { //climb from L1 or higher
+                    SetMotorPositions(kUpperLimitOne, kLowerLimitTwo);
+                    SetMotorPositions(kLowerLimitOne, kUpperLimitTwo);
+                    SetMotorPositions(kLowerLimitOne, kLowerLimitTwo);
+                    climbLevel++;
+                }
         });
    };
+

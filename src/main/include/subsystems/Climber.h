@@ -30,11 +30,14 @@ class Climber : public frc2::SubsystemBase {
 
    frc2::CommandPtr LowerClimber();
 
-   frc2::CommandPtr RaiseFromFloor();
-   
+   frc2::CommandPtr RaiseClimber();
+
   void Periodic() override;
 
  private:
+
+
+  int climbLevel = 0;
 
   ctre::phoenix6::hardware::TalonFX m_MotorOne;
 

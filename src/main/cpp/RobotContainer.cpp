@@ -22,8 +22,7 @@ void RobotContainer::ConfigureBindings() {
   m_XboxController.LeftTrigger().OnTrue(m_intake.SetVel(1_tps)); // CHANGE NUMBER LATER
   m_XboxController.LeftBumper().OnTrue(m_intake.SetAngle(0.5_tr)); // CHANGE NUMBER LATER
   m_XboxController.RightBumper().OnTrue(m_intake.SetAngle(1.5_tr)); // CHANGE NUMBER LATER
-  m_XboxController.X().OnTrue(m_climber.LevelOne());
-  m_XboxController.Y().OnTrue(m_climber.LevelThree());
+  m_XboxController.Y().OnTrue(m_climber.RaiseClimber());
   m_XboxController.A().OnTrue(m_climber.LowerClimber());
 }
 
