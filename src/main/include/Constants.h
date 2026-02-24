@@ -98,8 +98,8 @@ namespace ShooterConstants {
     inline constexpr units::angle::turn_t kLowerLimitTwo = -0_tr;
 
     inline constexpr int kCanIDFeed = 32;
-    inline constexpr units::angle::turn_t kUpperLimitTwo = 0_tr;
-    inline constexpr units::angle::turn_t kLowerLimitTwo = -0_tr;
+    inline constexpr units::angle::turn_t kUpperLimitFeed = 0_tr;
+    inline constexpr units::angle::turn_t kLowerLimitFeed = -0_tr;
     inline constexpr units::turns_per_second_t kShooterFeedSpeed = 0_tps;
 
     inline constexpr int kCanIDFlap = 99;
