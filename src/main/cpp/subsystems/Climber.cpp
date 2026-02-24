@@ -45,7 +45,7 @@ void Climber::Periodic() {}
 
    ////////   BOTH MOTORS
 
-   //Things like going straight to L1, L2, L3, and lowering the climber
+   //Things like raising and lowering the climber
 
    frc2::CommandPtr Climber::SetMotorPositions(units::inch_t positionOne, units::inch_t positionTwo){
             return RunOnce([this, positionOne, positionTwo] {
@@ -56,7 +56,7 @@ void Climber::Periodic() {}
 
    frc2::CommandPtr Climber::LowerClimber(){
             return RunOnce([this] {
-                if(climbLevel == 1){
+                if(climbLevel == 1){ //Lower from L1 ONLY
                     SetMotorPositions(kLowerLimitOne, kLowerLimitTwo);
                     climbLevel--;
                 }
@@ -69,7 +69,7 @@ void Climber::Periodic() {}
                     SetMotorPositions(kUpperLimitOne, kLowerLimitTwo);
                     SetMotorPositions(kLowerLimitOne, kLowerLimitTwo);
                     climbLevel++;
-                } else { //climb from L1 or higher
+                } else { //Climb from L1 or higher
                     SetMotorPositions(kUpperLimitOne, kLowerLimitTwo);
                     SetMotorPositions(kLowerLimitOne, kUpperLimitTwo);
                     SetMotorPositions(kLowerLimitOne, kLowerLimitTwo);

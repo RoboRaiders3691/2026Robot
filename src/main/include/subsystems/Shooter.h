@@ -51,6 +51,11 @@ class Shooter : public frc2::SubsystemBase {
 
   ctre::phoenix6::controls::MotionMagicVelocityVoltage m_VelRequestTwo;
 
+  
+  ctre::phoenix6::hardware::TalonFX m_ShooterFeed;
+
+  ctre::phoenix6::controls::MotionMagicVelocityVoltage m_VelRequestFeed;
+
 
   ctre::phoenix6::hardware::TalonFX m_Flap;
 

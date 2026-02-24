@@ -33,11 +33,11 @@ inline constexpr int kDriverControllerPort = 0;
 namespace IntakeConstants {
     inline constexpr ctre::phoenix6::CANBus kCanBus{"*"};
 
-    inline constexpr int kCanIDOne = 0;
+    inline constexpr int kCanIDOne = 21;
     inline constexpr units::angle::turn_t kUpperLimitOne = 0_tr;
     inline constexpr units::angle::turn_t kLowerLimitOne = -0_tr;
 
-    inline constexpr int kCanIDTwo = 0;
+    inline constexpr int kCanIDTwo = 20;
 
     static constexpr ctre::phoenix6::configs::TalonFXConfiguration KMotorOneConfigs = ctre::phoenix6::configs::TalonFXConfiguration{}
         .WithSlot0(ctre::phoenix6::configs::Slot0Configs{}
@@ -89,15 +89,20 @@ namespace ShooterConstants {
 
     inline constexpr bool InvertFollowDir = true;
 
-    inline constexpr int kCanIDOne = 0;
+    inline constexpr int kCanIDOne = 30;
     inline constexpr units::angle::turn_t kUpperLimitOne = 0_tr;
     inline constexpr units::angle::turn_t kLowerLimitOne = -0_tr;
 
-    inline constexpr int kCanIDTwo = 0;
+    inline constexpr int kCanIDTwo = 31;
     inline constexpr units::angle::turn_t kUpperLimitTwo = 0_tr;
     inline constexpr units::angle::turn_t kLowerLimitTwo = -0_tr;
 
-    inline constexpr int kCanIDFlap = 0;
+    inline constexpr int kCanIDFeed = 32;
+    inline constexpr units::angle::turn_t kUpperLimitTwo = 0_tr;
+    inline constexpr units::angle::turn_t kLowerLimitTwo = -0_tr;
+    inline constexpr units::turns_per_second_t kShooterFeedSpeed = 0_tps;
+
+    inline constexpr int kCanIDFlap = 99;
     inline constexpr units::angle::turn_t kUpperLimitFlap = 0_tr;
     inline constexpr units::angle::turn_t kLowerLimitFlap = -0_tr;
 
@@ -145,6 +150,28 @@ namespace ShooterConstants {
             .WithSensorToMechanismRatio(0)
         );
 
+        static constexpr ctre::phoenix6::configs::TalonFXConfiguration KFeedConfigs = ctre::phoenix6::configs::TalonFXConfiguration{}
+        .WithSlot0(ctre::phoenix6::configs::Slot0Configs{}
+                    
+            .WithKP(0)
+            .WithKI(0)
+            .WithKD(0)
+
+            .WithKS(0)
+            .WithKV(0)
+            .WithKA(0)
+            .WithKG(0)
+            .WithGravityType(ctre::phoenix6::signals::GravityTypeValue::Arm_Cosine)
+        )
+        .WithMotionMagic(ctre::phoenix6::configs::MotionMagicConfigs{}
+            .WithMotionMagicCruiseVelocity(5_tps)
+            .WithMotionMagicAcceleration(10_tr_per_s_sq)
+            .WithMotionMagicJerk(100_tr_per_s_cu)
+        )
+        .WithFeedback(ctre::phoenix6::configs::FeedbackConfigs{}
+            .WithSensorToMechanismRatio(0)
+        );
+
         static constexpr ctre::phoenix6::configs::TalonFXConfiguration KFlapConfigs = ctre::phoenix6::configs::TalonFXConfiguration{}
         .WithSlot0(ctre::phoenix6::configs::Slot0Configs{}
                     
@@ -171,11 +198,11 @@ namespace ShooterConstants {
 namespace ClimberConstants {
     inline constexpr ctre::phoenix6::CANBus kCanBus{"*"};
 
-    inline constexpr int kCanIDOne = 0;
+    inline constexpr int kCanIDOne = 40;
     inline constexpr units::length::inch_t kUpperLimitOne = 0_in;
     inline constexpr units::length::inch_t kLowerLimitOne = -0_in;
 
-    inline constexpr int kCanIDTwo = 0;
+    inline constexpr int kCanIDTwo = 98;
     inline constexpr units::length::inch_t kUpperLimitTwo = 0_in;
     inline constexpr units::length::inch_t kLowerLimitTwo = -0_in;
 
@@ -225,6 +252,25 @@ namespace ClimberConstants {
         .WithFeedback(ctre::phoenix6::configs::FeedbackConfigs{}
             .WithSensorToMechanismRatio(0)
         );
+
+}
+
+namespace VisionConstants {
+
+    // Max pose ambiguity (for single tag)
+    static constexpr double kMaxSingleTagAmbiguity = 0.2;
+    static constexpr double kMaxMultiTagAmbiguity = 0.3;
+
+    // Max distance (for single tag)
+    static constexpr units::inch_t kMaxSingleTagDistance = 150_in;
+    static constexpr units::inch_t kMaxMultiTagDistance = 200_in;
+  
+    // Default standard deviations 
+    static constexpr wpi::array<double, 3U> kSingleTagStdDevs {3.75, 3.75, 7.5};
+    static constexpr wpi::array<double, 3U> kMultiTagStdDevs {0.75, 0.75, 1.5};
+
+    // Standard deviations scale factor limit (scaled as: distance^2 * kStdDevsScaleFactorLimit/(MaxTagDistance^2))
+    static constexpr double kStdDevsScaleFactorLimit = 1.0 / 30.0;
 
 }
 
